@@ -13,5 +13,10 @@ for i in job_skills:
         matched.append(i)
     else:
         missing.append(i)
-print(matched)
-print(missing)
+print("Matched Skills:",matched)
+print("Missing Skills:",missing)
+
+
+Output:
+Matched Skills: ['HTML', 'CSS', 'React', 'SQL', 'MongoDB', 'Git', 'Docker']
+Missing Skills: ['JavaScript', 'Vue', 'Node.js', 'Python', 'Java', 'Spring', 'Ruby on Rails', 'MySQL', 'NoSQL', 'AWS', 'Azure', 'GCP', 'Problem Solving', 'Communication', 'Testing', 'Architecture', 'UX/UI']
