@@ -19,8 +19,14 @@ for text in texts:
         if "@" in w:
             email = w
             break
-    
     if email != "":
         print("Email found:", email)
     else:
         print("No email detected.")
+
+Output:
+Email found: john@gmail.com
+Email found: ram@yahoo.com
+No email detected.
+Email found: help@company.com
+Email found: info@service.in
