@@ -13,4 +13,8 @@ text="Experienced Full Stack Web Developer with over 5 years of experience "
 year=""
 for i in text:
     if i.isdigit():
-        print(i)
+        print("Experience Detected:",i,"Years")
+
+
+Output:
+Experience Detected: 5 Years
