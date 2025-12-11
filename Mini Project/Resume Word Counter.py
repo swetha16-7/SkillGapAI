@@ -16,3 +16,8 @@ for w in words:
 
 most_repeated = max(freq, key=freq.get)
 print("Most repeated word:", most_repeated)
+
+Output:
+Total words: 42
+unique_words: 34
+Most repeated word: and
