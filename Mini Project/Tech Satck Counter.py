@@ -23,3 +23,9 @@ for t in tech:
 print("Languages:", lang_count)
 print("Databases:", db_count)
 print("Frameworks:", fw_count)
+
+
+Output:
+Languages: 2
+Databases: 2
+Frameworks: 2
