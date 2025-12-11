@@ -19,3 +19,12 @@ for i in range(len(job_titles)):
             clean += ch
 
     print(clean.title())
+
+
+Output:
+Normalized job titles:
+Fullstack Developer  Amazon
+Senior Python Engineer Remote
+Software Developer  Java
+Frontend Engineer
+Datascience Lead
