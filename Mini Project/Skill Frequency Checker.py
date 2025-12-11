@@ -19,3 +19,6 @@ for i in para:
     if i == skill:
         count += 1
 print("Skill",skill,"appears",count,"times")
+
+Output:
+Skill wordpress appears 3 times
