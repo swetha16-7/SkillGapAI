@@ -18,4 +18,7 @@ for s in my_skills:
     elif s in software:
         category = "Software Development"
 
-print(category)
+print("Predicted Category:",category)
+
+Output:
+Predicted Category: Web Development
