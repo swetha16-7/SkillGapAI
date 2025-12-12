@@ -1,0 +1,6 @@
+product_id,product_name,category,price,stock
+P101,Laptop,Electronics,55000,20
+P102,Headphones,Electronics,1500,80
+P103,Notebook,Stationery,40,200
+P104,Office Chair,Furniture,3200,15
+P105,Water Bottle,Household,120,150
