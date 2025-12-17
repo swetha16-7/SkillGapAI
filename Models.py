@@ -1,11 +1,3 @@
-import os
-import sys
-import json
-import re
-import statistics
-import time
-
-
 # 1. Square root using math.sqrt()
 import math
 print(math.sqrt(25))
