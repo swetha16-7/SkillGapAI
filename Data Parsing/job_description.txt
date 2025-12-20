@@ -1,0 +1,58 @@
+Job Description:
+ASE- Associate Software Engineer
+Batch Eligible - Up to 2025 pass outs.
+Management Level - 12
+
+Role Overview:
+Developing, designing and maintaining technologies that improve the way our clients and the world work. Working in challenging and dynamic environments, they use their versatility to create and support technology solutions that meet client requirements from analysis to implementation.
+Design, build, test, assemble, and configure application using business requirements
+Understand business drivers that will impact performance and deliver software to those expectations
+Bake technology trends into solutions; Participate in the development of automation solutions, new functionality and technologies and integrate them in existing solutions
+Aptitude to learn, Good analytical and problem-solving skills and proficient in verbal and communication skills
+Deliver code to time and quality expectations and participate in peer reviews
+Take ownership of the successful implementation of the solution
+
+Any year of pass out until 2025
+Highest Qualification: B.E./B.Tech: All Branches; M.E./M.Tech: All Branches; MSc: All Branches; MCA; Integrated Dual Degree Program: BE + ME; BTech + MTech; BE/BTech + MS
+Only Full-time Education (Part-time, distance education & diploma are not eligible)
+Candidate should not have more than 23 months of full-time experience.
+No active backlogs in any semester during registration & onboarding.
+There should be no gaps during the candidate's current relevant highest degree. The candidate should complete the relevant degree in the stipulated duration. Example: B.Tech/BE must be completed in 4 years & Dual Degree in 5 years.
+Candidate should not have appeared for any Accenture recruitment process in the last 3 months.
+Candidates must be eligible to work in India either by citizenship or valid work permit. Bhutan and Nepal nationals can work in India without a visa. Others require a valid work visa, OCI, or PIO card.
+
+Assessment Process:
+If you are eligible, you will receive an email invitation to attend online assessments
+
+Mock Assessment
+You will get a 20-minute mock/practice assessment
+Mock assessment is mandatory, and it will ensure that you have the right hardware, software, and internet
+This assessment will help you to get experience of the assessments
+
+Assessment #1: Behavioral and Cognitive Assessment
+You will get total 40 minutes to complete the Behavioral and Cognitive assessment
+Behavioral assessment will focus on:
+Personality
+Cognitive assessment will focus on:
+Immersive & gamified (puzzles)
+Numerical equations
+Assessment #2: Technical assessment
+You will get total 45 minutes to complete technical assessment.
+Technical assessment will focus on:
+Common Application and MS office
+Pseudocode
+Fundamentals of Networking, Security and Cloud
+Computer Science (Basic Programming Concepts)
+Assessment #3: Coding assessment
+The duration of this assessment will be 60 minutes
+You will get 3 questions which must be solved using any one of the following languages:
+Backend (Java, Dotnet, Python, C++, C#)
+Database  (SQL)
+Front end Technology (HTML, CSS, React.Js,Vue.JS
+Assessment #4: Communication assessment
+The duration of this assessment is approximately 30 minutes
+You will receive a separate email with timelines and login details to participate in this assessment
+Communication assessment will assess you on the below mentioned parameters:
+Verbal - Pronunciation, Fluency, Active Listening, Spoken English Understanding, Vocabulary, Articulation, Grammar
+Written - Etiquette, Content, Grammar
+Final Round - Interview

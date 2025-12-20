@@ -1,0 +1,64 @@
+SWETHA MODALA
+6-3-767/1 Gandhinagar, Nalgonda, Telangana-508001 | +91-9121998166 |
+modalaswetha@gmail.com
+
+SUMMARY
+
+Final-year B.Tech(CSE) student skilled in Python, Java, SQL, and web technologies, with
+experience in AI/ML projects like an AI-Based Study Assistant and Real-Time Voice Translator.
+Passionate about artificial intelligence and eager to contribute to real-world AI/ML and data-driven
+projects.
+
+EDUCATION
+Bachelor of Technology | Computer Science and Engineering
+
+2022 - Present
+
+Vignan Institute of Technology and Science | CGPA : 8.96/10 (present)
+Intermediate | MPC
+
+2020 - 2022
+
+Gouthami Junior College | CGPA : 9.71/10
+
+SKILLS
+Programming Languages: Python, C, Java
+Web Development: HTML, CSS, Javascript
+Databases: MySQL, DBMS
+Languages: English, Telugu
+Core Competencies: Data Structures & Algorithms, OOP, Problem Solving
+
+PROJECTS
+AI-Based Study Assistant
+
+2023 - 2024
+
+Developed a Python AI study assistant using Tkinter, NLP, and rule-based chatbot to
+generate personalized study schedules, summarize text, and conduct interactive quizzes.
+Built a performance analytics dashboard to track learning progress, quiz scores, and study
+patterns, increasing student productivity.
+Implemented automated text summarization and quiz management, reducing manual
+planning effort and enhancing user engagement.
+Real-Time Voice Translator
+
+2022- 2023
+
+Developed a Python-based real-time multilingual voice translation application leveraging
+Google Translate API, SpeechRecognition, gTTS, and NLP techniques.
+Achieved 95% translation accuracy across 40+ languages and automated audio file
+handling, improving processing efficiency by 60%.
+Implemented continuous voice capture and real-time STT/TTS, reducing manual intervention
+by 80% and enabling seamless multi-user communication.
+
+CERTIFICATES
+Generative AI Tools Workshop – NxtWave (2024)
+Python – GUVI (2024)
+TCS iON Career Edge – Young Professional – TCS iON (2023)
+
+ACHIEVEMENTS
+Finalist - Smart India Hackathon 2025 (National-level innovation competition)
+CodeChef 1 Rating - Competitive programming skills
+Member - Computer Society of India (CSI)
+Selected - Pragati Cohort 6, Infosys Springboard 2025
+
+

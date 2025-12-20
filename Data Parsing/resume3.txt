@@ -1,0 +1,21 @@
+Name: Rahul Kumar
+Contact: rahul@email.com | 9123456789
+
+Profile
+Detail-oriented Software Engineer with experience in document processing
+and machine learning applications.
+
+Skills
+Java
+Python
+Spring Boot
+NLP
+PDF Processing
+
+Experience
+Junior Developer – XYZ Solutions
+• Built document extraction pipelines
+• Worked with PDF and DOCX resumes
+
+Education
+B.E. Computer Engineering
