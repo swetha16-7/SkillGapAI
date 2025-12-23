@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Milestone 1 - Data Ingestion</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>Milestone 1: Data Ingestion and Parsing Module</h2>
+</div>
+
+<!-- MAIN PANEL -->
+<div class="panel">
+
+    <!-- PANEL HEADER -->
+    <div class="panel-header">
+        <span class="panel-title">
+            <i class="fa-solid fa-folder-open"></i>
+            Document Upload & Parsing
+        </span>
+        <div class="panel-actions">
+            <button type="button" onclick="window.location.href='/'">
+                <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+            <button type="button">
+                <i class="fa-solid fa-gear"></i> Settings
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- UPLOAD SECTION -->
+        <div class="upload-card">
+            <div class="upload-box">
+
+                <div class="upload-box-header">
+                    <i class="fa-solid fa-upload"></i>
+                    <span>Upload Documents</span>
+                </div>
+
+                <div class="upload-icon-wrapper">
+                    <div class="upload-doc-icon">
+                        <span class="upload-doc-arrow"></span>
+                    </div>
+                </div>
+
+                <p class="upload-hint">
+                    Drag and drop files here or click to browse
+                </p>
+
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="active" value="{{ active }}">
+                    <input type="file" id="fileInput" name="file" hidden>
+
+                    <button type="button" class="select-btn"
+                            onclick="document.getElementById('fileInput').click()">
+                        Select Files
+                    </button>
+                </form>
+
+                <!-- FILE TYPE SELECTOR -->
+                <div class="file-type-badges">
+                    <span onclick="setFileType('pdf')">PDF</span>
+                    <span onclick="setFileType('docx')">DOCX</span>
+                    <span onclick="setFileType('txt')">TXT</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DOCUMENT PREVIEW -->
+        <div class="preview-card">
+
+            <div class="preview-header-top">
+                <i class="fa-solid fa-eye"></i>
+                <span class="preview-title">Document Preview</span>
+            </div>
+
+            <div class="preview-tabs">
+                <button class="preview-tab {% if active=='resume' %}active{% endif %}"
+                        onclick="switchTab('resume')">Resume</button>
+                <button class="preview-tab {% if active=='jd' %}active{% endif %}"
+                        onclick="switchTab('jd')">Job Description</button>
+            </div>
+
+            <div class="preview-meta">
+                <span class="file-name">
+                    {% if active == "resume" %}
+                        Document: {{ resume.filename }}
+                    {% else %}
+                        Document: {{ jd.filename }}
+                    {% endif %}
+                </span>
+
+                <span class="count-text">
+                    {% if active == "resume" %}
+                        Characters: {{ resume.chars }} | Words: {{ resume.words }}
+                    {% else %}
+                        Characters: {{ jd.chars }} | Words: {{ jd.words }}
+                    {% endif %}
+                </span>
+            </div>
+
+            <hr>
+
+            <div class="preview-content">
+                {% if active == "resume" %}
+                    {{ resume.html|safe }}
+                {% else %}
+                    {{ jd.html|safe }}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+function switchTab(tab) {
+    const form = document.createElement("form");
+    form.method = "post";
+    form.innerHTML = `<input type="hidden" name="active" value="${tab}">`;
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function setFileType(type) {
+    const input = document.getElementById("fileInput");
+
+    if (type === "pdf") input.accept = ".pdf";
+    if (type === "docx") input.accept = ".docx";
+    if (type === "txt") input.accept = ".txt";
+
+    input.click();
+}
+
+document.getElementById("fileInput").addEventListener("change", function () {
+    if (this.files.length > 0) {
+        this.form.submit();
+    }
+});
+</script>
+
+</body>
+</html>
