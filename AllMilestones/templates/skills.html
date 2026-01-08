@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skill Extraction Interface</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='skills.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>Milestone 2: Skill Extraction using NLP Module</h2>
+</div>
+
+<div class="panel">
+
+    <!-- HEADER -->
+    <div class="panel-header">
+        <span class="panel-title">
+            <i class="fa-solid fa-brain"></i> Skill Extraction Interface
+        </span>
+
+        <div class="panel-actions">
+            <button class="select-btn" onclick="location.reload()">
+                <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+
+            <button class="select-btn" onclick="toggleFilter()">
+                <i class="fa-solid fa-filter"></i> Filter
+            </button>
+
+            <a href="/" class="select-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- ================= LEFT PANEL ================= -->
+        <div class="preview-card">
+
+            <h4 id="topTitle">
+                <i class="fa-solid fa-file-lines"></i> Resume Skills
+            </h4>
+
+            <!-- TOGGLE TABS -->
+            <div class="preview-tabs">
+                <button id="resumeTab" class="preview-tab active" onclick="showResume()">Resume</button>
+                <button id="jdTab" class="preview-tab" onclick="showJD()">Job Description</button>
+            </div>
+
+            <!-- ===== RESUME VIEW ===== -->
+            <div id="resumeView">
+                <div class="skill-tags">
+                    {% for skill, score in resume.technical_skills.items() %}
+                        <span class="tech">{{ skill }} {{ score }}%</span>
+                    {% endfor %}
+                    {% for skill, score in resume.soft_skills.items() %}
+                        <span class="soft">{{ skill }} {{ score }}%</span>
+                    {% endfor %}
+                </div>
+
+                <hr>
+
+                <h4><i class="fa-solid fa-highlighter"></i> Highlighted Resume</h4>
+                <div class="highlight-box">
+                    {{ highlighted_resume }}
+                </div>
+            </div>
+
+            <!-- ===== JD VIEW ===== -->
+            <div id="jdView" class="hidden">
+                <div class="skill-tags">
+                    {% for skill, score in jd.technical_skills.items() %}
+                        <span class="tech">{{ skill }} {{ score }}%</span>
+                    {% endfor %}
+                    {% for skill, score in jd.soft_skills.items() %}
+                        <span class="soft">{{ skill }} {{ score }}%</span>
+                    {% endfor %}
+                </div>
+
+                <hr>
+
+                <h4><i class="fa-solid fa-highlighter"></i> Highlighted Job Description</h4>
+                <div class="highlight-box">
+                    {{ highlighted_jd }}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT PANEL ================= -->
+        <div class="upload-card">
+
+            <!-- ===== SKILL DISTRIBUTION ===== -->
+            <div class="skill-summary">
+                <h4><i class="fa-solid fa-chart-pie"></i> Skill Distribution</h4>
+
+                <div class="chart-wrapper">
+                    <canvas id="skillChart"></canvas>
+                </div>
+
+                <div class="summary-grid">
+                    <div>
+                        <h3 id="techCount">{{ resume.technical_skills|length }}</h3>
+                        <p>Technical Skills</p>
+                    </div>
+                    <div>
+                        <h3 id="softCount">{{ resume.soft_skills|length }}</h3>
+                        <p>Soft Skills</p>
+                    </div>
+                    <div>
+                        <h3 id="totalCount">
+                            {{ resume.technical_skills|length + resume.soft_skills|length }}
+                        </h3>
+                        <p>Total Skills</p>
+                    </div>
+                    <div>
+                        <h3 id="avgConfidence">{{ resume_avg_confidence }}%</h3>
+                        <p>Avg. Confidence</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== DETAILED SKILLS (TOP SKILL ONLY) ===== -->
+            <div class="skill-summary">
+                <h4><i class="fa-solid fa-list-check"></i> Detailed Skills</h4>
+
+                <!-- RESUME TOP SKILL -->
+                <div id="resumeDetails">
+                    {% set all_resume_skills =
+                        resume.technical_skills | dictsort(by='value', reverse=True)
+                        + resume.soft_skills | dictsort(by='value', reverse=True)
+                    %}
+                    {% if all_resume_skills %}
+                        {% set top_skill = all_resume_skills[0] %}
+                        <div class="detail-row">
+                            <span>
+                                {% if top_skill[0] in resume.technical_skills %}
+                                    <i class="fa-solid fa-code"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-user"></i>
+                                {% endif %}
+                                {{ top_skill[0] }} ({{ top_skill[1] }}%)
+                            </span>
+                            <div class="bar">
+                                <div class="fill" style="width: {{ top_skill[1] }}%"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- JD TOP SKILL -->
+                <div id="jdDetails" class="hidden">
+                    {% set all_jd_skills =
+                        jd.technical_skills | dictsort(by='value', reverse=True)
+                        + jd.soft_skills | dictsort(by='value', reverse=True)
+                    %}
+                    {% if all_jd_skills %}
+                        {% set top_jd_skill = all_jd_skills[0] %}
+                        <div class="detail-row">
+                            <span>
+                                {% if top_jd_skill[0] in jd.technical_skills %}
+                                    <i class="fa-solid fa-code"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-user"></i>
+                                {% endif %}
+                                {{ top_jd_skill[0] }} ({{ top_jd_skill[1] }}%)
+                            </span>
+                            <div class="bar">
+                                <div class="fill" style="width: {{ top_jd_skill[1] }}%"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="text-align:center; margin: 25px;">
+    <a href="{{ url_for('milestone3') }}" class="select-btn">
+        Go to Milestone 3 – Skill Gap Analysis
+    </a>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+const resumeTech = {{ resume.technical_skills|length }};
+const resumeSoft = {{ resume.soft_skills|length }};
+const jdTech = {{ jd.technical_skills|length }};
+const jdSoft = {{ jd.soft_skills|length }};
+
+const ctx = document.getElementById('skillChart');
+const skillChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Technical Skills', 'Soft Skills'],
+        datasets: [{
+            data: [resumeTech, resumeSoft],
+            backgroundColor: ['#2f8f83', '#7cc7a3'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        cutout: '72%',
+        plugins: { legend: { position: 'bottom' } }
+    }
+});
+
+function showResume() {
+    topTitle.innerHTML = '<i class="fa-solid fa-file-lines"></i> Resume Skills';
+
+    resumeView.classList.remove("hidden");
+    jdView.classList.add("hidden");
+    resumeDetails.classList.remove("hidden");
+    jdDetails.classList.add("hidden");
+
+    resumeTab.classList.add("active");
+    jdTab.classList.remove("active");
+
+    skillChart.data.datasets[0].data = [resumeTech, resumeSoft];
+    skillChart.update();
+
+    techCount.innerText = resumeTech;
+    softCount.innerText = resumeSoft;
+    totalCount.innerText = resumeTech + resumeSoft;
+    avgConfidence.innerText = "{{ resume_avg_confidence }}%";
+}
+
+function showJD() {
+    topTitle.innerHTML = '<i class="fa-solid fa-file-lines"></i> Job Description Skills';
+
+    resumeView.classList.add("hidden");
+    jdView.classList.remove("hidden");
+    resumeDetails.classList.add("hidden");
+    jdDetails.classList.remove("hidden");
+
+    jdTab.classList.add("active");
+    resumeTab.classList.remove("active");
+
+    skillChart.data.datasets[0].data = [jdTech, jdSoft];
+    skillChart.update();
+
+    techCount.innerText = jdTech;
+    softCount.innerText = jdSoft;
+    totalCount.innerText = jdTech + jdSoft;
+    avgConfidence.innerText = "{{ jd_avg_confidence }}%";
+}
+
+function toggleFilter() {
+    alert("Filter logic can be added here");
+}
+</script>
+
+</body>
+</html>
