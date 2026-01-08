@@ -1,1 +1,251 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6fb;
+}
 
+.header {
+    background: #4c56c0;
+    color: white;
+    padding: 20px 30px;
+}
+
+.panel {
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    font-weight: 600;
+    color: #3f51b5;
+}
+
+.panel-actions button {
+    background: #4c56c0;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+}
+
+.upload-card {
+    width: 38%;
+}
+
+.preview-card {
+    width: 62%;
+    border: 1px solid #e3e6ef;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 430px;
+    overflow-y: auto;
+}
+
+.upload-box {
+    border: 2px dashed #cfd6e4;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    background: #fafbff;
+}
+
+.upload-box-header {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.upload-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.upload-doc-icon {
+    width: 44px;
+    height: 54px;
+    background: #4c56c0;
+    border-radius: 4px;
+    position: relative;
+}
+
+.upload-doc-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 12px solid #eef1ff;
+    border-left: 12px solid transparent;
+}
+
+.upload-doc-arrow {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.upload-doc-arrow::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid white;
+    margin: 0 auto;
+}
+
+.upload-doc-arrow::after {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 10px;
+    background: white;
+    margin: 0 auto;
+}
+
+.upload-hint {
+    color: #777;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.select-btn {
+    background: #4c56c0;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.file-type-badges {
+    margin-top: 10px;
+}
+
+.file-type-badges span {
+    display: inline-block;
+    background: #eef1ff;
+    color: #4c56c0;
+    font-size: 11px;
+    padding: 3px 8px;
+    margin: 0 3px;
+    border-radius: 4px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tab {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: #eef1ff;
+    color: #4c56c0;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #4c56c0;
+    color: white;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.count-text {
+    font-size: 12px;
+    color: #777;
+}
+
+h4 {
+    margin: 12px 0 4px;
+}
+
+p {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+/* -------- Document Preview (Screenshot Style) -------- */
+
+.preview-header-top {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.preview-title {
+    font-size: 15px;
+    color: #333;
+}
+
+.preview-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.preview-tab {
+    border: none;
+    background: #eef1ff;
+    color: #4c56c0;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.preview-tab.active {
+    background: #4c56c0;
+    color: white;
+}
+
+.preview-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.file-name {
+    font-style: italic;
+}
+
+.preview-content h4 {
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.preview-content p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.file-type-badges span {
+    cursor: pointer;
+}

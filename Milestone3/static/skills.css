@@ -1,0 +1,265 @@
+.header {
+    background: #2f8f83;        /* GREEN */
+    color: #ffffff;
+    padding: 16px 24px;
+    font-weight: 600;
+}
+
+/* ===============================
+   SKILL TAGS
+   =============================== */
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.skill-tags span {
+    background: #eef6f3;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.skill-tags .tech {
+    color: #2f8f83;
+}
+
+.skill-tags .soft {
+    color: #5fa77a;
+}
+
+/* ===============================
+   TOGGLE BUTTONS
+   =============================== */
+
+.preview-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.preview-tab {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #cfe5df;
+    background: #eaf4f1;
+    color: #23766d;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.preview-tab.active {
+    background: #2f8f83;
+    color: #ffffff;
+    border-color: #2f8f83;
+}
+
+/* ===============================
+   HIGHLIGHT BOX (NO SCROLLBAR)
+   =============================== */
+
+.highlight-box {
+    background: #f7fbfa;
+    border: 1px solid #d9ece6;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: 8px;
+
+    /* ✅ NO SLIDER */
+    height: auto;
+    max-height: none;
+    overflow: visible;
+}
+
+/* Highlight colors */
+mark.tech {
+    background-color: #2f8f83;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+mark.soft {
+    background-color: #7cc7a3;
+    color: #083b2d;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* ===============================
+   SUMMARY & CHART
+   =============================== */
+
+.chart-wrapper {
+    width: 210px;
+    height: 210px;
+    margin: 10px auto;
+}
+
+.skill-summary {
+    background: #f7fbfa;
+    border: 1px solid #d9ece6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.summary-grid div {
+    background: #e9f3f1;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary-grid h3 {
+    margin: 0;
+    color: #2f8f83;
+    font-weight: 600;
+}
+
+.summary-grid p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #23766d;
+}
+
+/* ===============================
+   TOTAL SKILLS HIGHLIGHT
+   =============================== */
+
+.total-highlight {
+    background: #2f8f83;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+}
+
+.total-highlight h3 {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.total-highlight p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #e6fffa;
+}
+
+/* ===============================
+   DETAILED SKILLS
+   =============================== */
+
+.detail-row {
+    margin-top: 10px;
+}
+
+.detail-row span {
+    font-size: 13px;
+    color: #23766d;
+}
+
+.bar {
+    background: #d9ece6;
+    height: 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.fill {
+    height: 6px;
+    background: #2f8f83;
+    border-radius: 4px;
+}
+
+/* ===============================
+   UTIL
+   =============================== */
+
+.hidden {
+    display: none;
+}
+
+/* ===============================
+   REMOVE UNWANTED SCROLLBARS
+   =============================== */
+
+/* Left preview card */
+.preview-card {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+/* Main content wrapper */
+.content {
+    overflow: visible !important;
+}
+
+/* Panel body */
+.panel {
+    overflow: visible !important;
+}
+
+/* Page level (safety) */
+body {
+    overflow-x: hidden;
+}
+
+/* ===============================
+   SKILL EXTRACTION HEADER BAR
+   =============================== */
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #eaf4f1;          /* ✅ light green background */
+    border: 1px solid #cfe5df;    /* subtle green border */
+    color: #23766d;
+
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* Title text */
+.panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #23766d;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===============================
+   HEADER BUTTONS (Refresh / Filter / Back)
+   =============================== */
+
+.panel-actions .select-btn {
+    background: #2f8f83;      /* green button */
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.panel-actions .select-btn:hover {
+    background: #23766d;
+}
