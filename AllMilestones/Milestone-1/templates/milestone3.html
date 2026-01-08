@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestone 3 - Skill Gap Analysis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='milestone3.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ===== PURPLE HEADER ===== -->
+<div class="header">
+    <h2>Milestone 3: Skill Gap Analysis and Similarity Matching Module (Weeks 5–6)</h2>
+</div>
+
+<!-- ===== INTERFACE BAR ===== -->
+<div class="interface-bar">
+    <h3>Skill Gap Analysis Interface</h3>
+    <button onclick="location.reload()">⟳ Refresh</button>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
+
+    <!-- LEFT -->
+    <div class="left">
+
+        <!-- Similarity Matrix -->
+        <div class="card">
+            <div class="card-title">▦ Similarity Matrix</div>
+
+            <canvas id="heatmap"></canvas>
+
+            <div class="legend">
+                <span class="dot green"></span> High Match (80–100%)
+                <span class="dot orange"></span> Partial Match (50–79%)
+                <span class="dot red"></span> Low Match (0–49%)
+            </div>
+        </div>
+
+        <!-- Missing Skills -->
+        <div class="card">
+            <div class="card-title">⚠ Missing Skills</div>
+            {% for skill in missing_skills %}
+            <div class="missing-item">
+                <div>
+                    <strong>{{ skill }}</strong>
+                    <span>Technical Skill</span>
+                </div>
+                <span class="risk">High</span>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+        <!-- Skill Match Overview -->
+        <div class="card">
+            <div class="card-title">◔ Skill Match Overview</div>
+
+            <div class="stats">
+                <div class="stat">
+                    <h2>{{ overall }}%</h2>
+                    <p>Overall Match</p>
+                </div>
+                <div class="stat">
+                    <h2>{{ matched }}</h2>
+                    <p>Matched Skills</p>
+                </div>
+                <div class="stat">
+                    <h2>{{ partial }}</h2>
+                    <p>Partial Matches</p>
+                </div>
+                <div class="stat">
+                    <h2>{{ missing }}</h2>
+                    <p>Missing Skills</p>
+                </div>
+            </div>
+
+            <canvas id="donutChart"></canvas>
+        </div>
+
+    </div>
+</div>
+<a href="{{ url_for('milestone4') }}"
+   style="padding:10px 20px;background:#673AB7;color:white;border-radius:6px;">
+   Go to Milestone 4 Dashboard
+</a>
+
+
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ================= SIMILARITY MATRIX ================= */
+const matrix   = {{ matrix | tojson }};
+const xLabels  = {{ jd_labels | tojson }};
+const yLabels  = {{ resume_labels | tojson }};
+
+const dots = [];
+
+for (let r = 0; r < matrix.length; r++) {
+    for (let c = 0; c < matrix[r].length; c++) {
+
+        const v = matrix[r][c];
+        if (v === null) continue;   // ⭐ IMPORTANT: skip filtered values
+
+        let color;
+        if (v >= 0.80) color = '#4CAF50';      // 🟢 High
+        else if (v >= 0.50) color = '#FF9800'; // 🟠 Partial
+        else color = '#F44336';                // 🔴 Low
+
+        dots.push({ x: c, y: r, r: 9, backgroundColor: color });
+    }
+}
+
+new Chart(document.getElementById("heatmap"), {
+    type: 'bubble',
+    data: {
+        datasets: [{
+            data: dots,
+            backgroundColor: dots.map(d => d.backgroundColor)
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: {
+                offset: true,
+                ticks: { callback: i => xLabels[i], autoSkip: false }
+            },
+            y: {
+                offset: true,
+                ticks: { callback: i => yLabels[i], autoSkip: false }
+            }
+        }
+    }
+});
+
+/* ================= DONUT CHART ================= */
+new Chart(document.getElementById("donutChart"), {
+    type: 'doughnut',
+    data: {
+        labels: ['Matched Skills', 'Partial Matches', 'Missing Skills'],
+        datasets: [{
+            data: [{{ matched }}, {{ partial }}, {{ missing }}],
+            backgroundColor: ['#4CAF50', '#FF9800', '#F44336'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '70%',
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

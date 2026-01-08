@@ -1,0 +1,36 @@
+{
+    "overall_match": 74,
+    "matched": 5,
+    "missing": 5,
+    "resume_skills": [
+        "machine learning",
+        "deep learning",
+        "data visualization",
+        "git",
+        "collaboration",
+        "problem solving",
+        "time management",
+        "communication",
+        "sql",
+        "data science"
+    ],
+    "jd_skills": [
+        "nlp",
+        "machine learning",
+        "deep learning",
+        "data visualization",
+        "communication",
+        "python",
+        "aws",
+        "tensorflow",
+        "pytorch",
+        "sql"
+    ],
+    "missing_skills": [
+        "aws",
+        "nlp",
+        "python",
+        "pytorch",
+        "tensorflow"
+    ]
+}
