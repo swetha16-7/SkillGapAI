@@ -1,0 +1,30 @@
+Skill Gap Analysis Report
+Generated:,2026-01-16 08:24:40
+
+Summary
+Match Percentage,40%
+Total Resume Skills,10
+Total JD Skills,10
+Matched Skills,4
+Missing Skills,5
+
+Matched Technical Skills
+Sql
+Python
+Matplotlib
+
+Matched Soft Skills
+Communication
+
+Missing Technical Skills
+Pytorch
+Aws
+Deep Learning Frameworks
+Deep Learning
+Tensorflow
+
+Missing Soft Skills
+
+Partially Matched Skills
+JD Skill,Resume Skill,Similarity %
+Machine Learning,Data Analysis,55.4%
