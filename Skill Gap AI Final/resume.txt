@@ -1,0 +1,52 @@
+SWETHA
+Web Developer
+
+Email: swetha@gmail.com
+Phone: +91 9876543210
+Location: Bengaluru, India
+LinkedIn: linkedin.com/in/swetha
+
+--------------------------------------------------
+PROFESSIONAL SUMMARY
+--------------------------------------------------
+Entry-level Web Developer with hands-on experience in building simple and responsive websites. Comfortable working in team environments and eager to learn new web technologies.
+
+--------------------------------------------------
+SKILLS
+--------------------------------------------------
+Technical Skills:
+- HTML, CSS, JavaScript
+- Git, GitHub
+- Basic SQL / MongoDB
+
+Soft Skills:
+- Clear communication
+- Team collaboration
+- Problem-solving
+- Time management
+- Adaptability
+
+--------------------------------------------------
+PROJECT EXPERIENCE
+--------------------------------------------------
+Personal Portfolio Website
+- Designed and developed a responsive personal website
+- Used HTML, CSS, and JavaScript
+- Focused on clean layout and usability
+
+Simple E-commerce Website (Academic Project)
+- Created product listing and cart pages
+- Worked with team members to complete project on time
+
+--------------------------------------------------
+EDUCATION
+--------------------------------------------------
+Bachelor of Technology in Computer Science
+XYZ Institute of Technology, India
+2020 – 2024
+
+--------------------------------------------------
+ADDITIONAL DETAILS
+--------------------------------------------------
+- Familiar with Agile basics
+- Open to learning new tools and frameworks

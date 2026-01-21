@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillGapAI Analyzing Resume and Job Post for Skill Gap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SkillGapAI Analyzing Resume and Job Post for Skill Gap</h1>
+            <p class="subtitle">Compare Your Resume with Any Job Description - Instantly!</p>
+            <p class="header-desc">See what skills you have, what's missing, and how well you match the job</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section id="upload-section" class="section">
+            <div class="instructions-box">
+                <h2>📋 How It Works</h2>
+
+                <div class="steps-container">
+                <div class="steps-wrapper">
+                    <div class="steps-content">
+                        <h3 class="steps-title">Quick Steps:</h3>
+                        <ol class="steps-list">
+                            <li><strong>Upload your resume</strong> (PDF, Word, or Text file)</li>
+                            <li><strong>Upload the job description</strong> you're applying for</li>
+                            <li><strong>Click "Analyze Now"</strong> to see your skill match</li>
+                            <li><strong>Get instant results</strong> showing what you have and what you need</li>
+                        </ol>
+                    </div>
+                    <div class="steps-image">
+                        <img src="{{ url_for('static', filename='images/image.png') }}" alt="SkillGap AI Quick Steps">
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Upload Your Resume and Job Description</h2>
+            <div class="upload-container" role="region" aria-label="File Upload Section">
+                <div class="upload-box" id="resume-upload-box" role="region" aria-label="Resume Upload Area" tabindex="0">
+                    <div class="upload-icon" aria-hidden="true">📄</div>
+                    <label for="resume-upload">Your Resume</label>
+                    <p class="upload-hint">Click to select or drag & drop your resume file</p>
+                    <input type="file" id="resume-upload" accept=".pdf,.docx,.txt" required aria-describedby="resume-hint resume-info" aria-label="Upload your resume file">
+                    <div class="file-name" id="resume-name" aria-live="polite">No file selected</div>
+                    <div class="file-actions" id="resume-actions" style="display: none;">
+                        <button class="preview-btn" id="preview-resume" title="Preview file contents" aria-label="Preview resume file contents">
+                            <span class="btn-icon" aria-hidden="true">👁️</span>
+                            Preview
+                        </button>
+                    </div>
+                    <p class="file-info" id="resume-info">✅ PDF, Word (.docx), or Text files work</p>
+                    <div class="drag-overlay" id="resume-drag-overlay" aria-hidden="true">
+                        <div class="drag-icon" aria-hidden="true">📥</div>
+                        <div class="drag-text">Drop your resume here</div>
+                    </div>
+                </div>
+                <div class="upload-box" id="jd-upload-box" role="region" aria-label="Job Description Upload Area" tabindex="0">
+                    <div class="upload-icon" aria-hidden="true">💼</div>
+                    <label for="jd-upload">Job Description</label>
+                    <p class="upload-hint">Click to select or drag & drop the job posting</p>
+                    <input type="file" id="jd-upload" accept=".pdf,.docx,.txt" required aria-describedby="jd-hint jd-info" aria-label="Upload job description file">
+                    <div class="file-name" id="jd-name" aria-live="polite">No file selected</div>
+                    <div class="file-actions" id="jd-actions" style="display: none;">
+                        <button class="preview-btn" id="preview-jd" title="Preview file contents" aria-label="Preview job description file contents">
+                            <span class="btn-icon" aria-hidden="true">👁️</span>
+                            Preview
+                        </button>
+                    </div>
+                    <p class="file-info" id="jd-info">✅ PDF, Word (.docx), or Text files work</p>
+                    <div class="drag-overlay" id="jd-drag-overlay" aria-hidden="true">
+                        <div class="drag-icon" aria-hidden="true">📥</div>
+                        <div class="drag-text">Drop job description here</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button id="analyze-btn" class="btn-primary">
+                    <span class="btn-icon">🔍</span>
+                    Analyze Now
+                </button>
+            </div>
+            <div id="loading" class="loading hidden">
+                <div class="progress-container">
+                    <div class="progress-circle">
+                        <svg class="progress-svg" width="120" height="120">
+                            <circle class="progress-bg" cx="60" cy="60" r="50"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="50" id="progress-ring"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <div class="progress-percentage" id="progress-percentage">0%</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="loading-text" id="loading-text">Reading your documents...</p>
+                <p class="loading-subtext" id="loading-subtext">This usually takes 10-30 seconds</p>
+                <div class="progress-steps">
+                    <div class="step" id="step-upload">
+                        <div class="step-icon">📤</div>
+                        <span>Uploading files</span>
+                        <div class="step-check">✓</div>
+                    </div>
+                    <div class="step" id="step-parse">
+                        <div class="step-icon">📖</div>
+                        <span>Parsing documents</span>
+                        <div class="step-check">✓</div>
+                    </div>
+                    <div class="step" id="step-extract">
+                        <div class="step-icon">🔍</div>
+                        <span>Extracting skills</span>
+                        <div class="step-check">✓</div>
+                    </div>
+                    <div class="step" id="step-analyze">
+                        <div class="step-icon">📊</div>
+                        <span>Analyzing gaps</span>
+                        <div class="step-check">✓</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="section hidden" role="region" aria-label="Analysis Results" aria-live="polite">
+            <div class="results-header">
+                <h2>Analysis Results</h2>
+                <p class="results-subtitle">Here's how well your resume matches the job requirements</p>
+            </div>
+
+
+            <!-- Visual Match Indicator -->
+            <div class="match-visualization">
+                <div class="match-header">
+                    <h3>Your Match Level</h3>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="match-progress-bar" style="width: 0%">
+                            <span class="progress-percentage-text" id="progress-percentage-text">0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-labels">
+                        <span>Low Match</span>
+                        <span>Good Match</span>
+                        <span>Excellent Match</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="summary-cards" role="region" aria-label="Summary Statistics">
+                <div class="card match-card" role="region" aria-label="Match Score">
+                    <div class="card-icon" aria-hidden="true">🎯</div>
+                    <h3>Your Match Score</h3>
+                    <div class="match-score-circle">
+                        <svg class="match-progress-svg" width="100" height="100">
+                            <circle class="match-progress-bg" cx="50" cy="50" r="42"></circle>
+                            <circle class="match-progress-bar" cx="50" cy="50" r="42" id="match-score-ring"></circle>
+                        </svg>
+                        <div class="match-score-text">
+                            <div class="match-score-percentage" id="match-percentage">0%</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">How well you match this job</p>
+                </div>
+                <div class="card" role="region" aria-label="Resume Skills Count">
+                    <div class="card-icon" aria-hidden="true">📝</div>
+                    <h3>Resume Skills</h3>
+                    <div class="big-number" id="total-resume-skills" aria-label="Total resume skills">0</div>
+                    <p class="card-desc">Total skills found</p>
+                </div>
+                <div class="card" role="region" aria-label="Job Requirements Count">
+                    <div class="card-icon" aria-hidden="true">📋</div>
+                    <h3>Job Required Skills</h3>
+                    <div class="big-number" id="total-jd-skills" aria-label="Total job skills">0</div>
+                    <p class="card-desc">What the job needs</p>
+                </div>
+                <div class="card" role="region" aria-label="Matching Skills Count">
+                    <div class="card-icon" aria-hidden="true"></div>
+                    <h3>Matching Skills</h3>
+                    <div class="big-number" id="matched-count" aria-label="Matched skills count">0</div>
+                    <div class="progress-mini">
+                        <div class="progress-mini-bg">
+                            <div class="progress-mini-fill" id="mini-matched-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <p class="card-desc">Matching skills found</p>
+                </div>
+            </div>
+
+            <!-- Skill Mapping Visualization -->
+            <div class="skill-mapping">
+                <div class="mapping-header">
+                    <h3>🔗 Skill Matching Overview</h3>
+                    <p class="mapping-desc">See exactly how your skills align with job requirements</p>
+                </div>
+                <div class="mapping-content">
+                    <div class="mapping-section resume-section">
+                        <h4>Your Resume Skills</h4>
+                        <div class="mapping-chart">
+                            <canvas id="resume-mapping-chart" width="150" height="150"></canvas>
+                        </div>
+                        <div class="skill-flow">
+                            <div class="skill-group" id="resume-technical-group">
+                                <h5>💻 Technical Skills</h5>
+                                <div class="skill-tags" id="resume-technical-tags"></div>
+                            </div>
+                            <div class="skill-group" id="resume-soft-group">
+                                <h5>🤝 Soft Skills</h5>
+                                <div class="skill-tags" id="resume-soft-tags"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mapping-arrows">
+                        <div class="arrow-connector">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">→</div>
+                        </div>
+                        <div class="match-indicator" id="match-indicator">
+                            <div class="match-text">Matching</div>
+                            <div class="match-count" id="mapping-match-count">0</div>
+                        </div>
+                    </div>
+
+                    <div class="mapping-section job-section">
+                        <h4>Job Requirements</h4>
+                        <div class="mapping-chart">
+                            <canvas id="jd-mapping-chart" width="150" height="150"></canvas>
+                        </div>
+                        <div class="skill-flow">
+                            <div class="skill-group" id="job-technical-group">
+                                <h5>💻 Technical Skills</h5>
+                                <div class="skill-tags" id="job-technical-tags"></div>
+                            </div>
+                            <div class="skill-group" id="job-soft-group">
+                                <h5>🤝 Soft Skills</h5>
+                                <div class="skill-tags" id="job-soft-tags"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Skill Breakdown -->
+            <div class="skills-container">
+                <div class="skills-box success-box">
+                    <div class="box-header">
+                        <h3>Matching Skills</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div>
+                            <h4>💻 Technical Skills</h4>
+                            <div id="matched-technical" class="skill-tags skill-tags-technical"></div>
+                        </div>
+                        <div>
+                            <h4>🤝 Soft Skills</h4>
+                            <div id="matched-soft" class="skill-tags skill-tags-soft"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-box warning-box">
+                    <div class="box-header">
+                        <h3>Partially Matching Skills</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div>
+                            <h4>💻 Technical Skills</h4>
+                            <div id="partially-matched-technical" class="skill-tags skill-tags-technical"></div>
+                        </div>
+                        <div>
+                            <h4>🤝 Soft Skills</h4>
+                            <div id="partially-matched-soft" class="skill-tags skill-tags-soft"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-box error-box">
+                    <div class="box-header">
+                        <h3>Missing Skills</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div>
+                            <h4>💻 Technical Skills to Learn</h4>
+                            <div id="missing-technical" class="skill-tags skill-tags-technical"></div>
+                        </div>
+                        <div>
+                            <h4>🤝 Soft Skills to Develop</h4>
+                            <div id="missing-soft" class="skill-tags skill-tags-soft"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-box info-box">
+                    <div class="box-header">
+                        <h3>Bonus Skills You Have</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div>
+                            <h4>💻 Technical Skills</h4>
+                            <div id="extra-technical" class="skill-tags skill-tags-technical"></div>
+                        </div>
+                        <div>
+                            <h4>🤝 Soft Skills</h4>
+                            <div id="extra-soft" class="skill-tags skill-tags-soft"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="action-plan">
+                <div class="plan-header">
+                    <h3>🚀 Your Action Plan</h3>
+                    <p class="plan-desc">Here's what you should focus on to improve your chances</p>
+                </div>
+                <div class="plan-steps">
+                    <div class="plan-step priority-high" id="step-1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4 id="step-1-title">Learn Critical Skills</h4>
+                            <div class="step-skills" id="critical-skills-list"></div>
+                        </div>
+                    </div>
+                    <div class="plan-step priority-medium" id="step-2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4 id="step-2-title">Strengthen Similar Skills</h4>
+                            <div class="step-skills" id="similar-skills-list"></div>
+                        </div>
+                    </div>
+                    <div class="plan-step priority-low" id="step-3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4 id="step-3-title">Highlight Your Strengths</h4>
+                            <div class="step-skills" id="strengths-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="export-buttons">
+                <h3 class="export-title">💾 Save Your Results</h3>
+                <p class="export-desc">Download a detailed report to share or keep for reference</p>
+                <div class="button-group">
+                    <button id="view-dashboard" class="btn-primary">
+                        <span class="btn-icon">📊</span>
+                        View Dashboard
+                    </button>
+                    <button id="export-pdf" class="btn-secondary">
+                        <span class="btn-icon">📄</span>
+                        Download PDF Report
+                    </button>
+                    <button id="export-csv" class="btn-secondary">
+                        <span class="btn-icon">📊</span>
+                        Download Excel Report
+                    </button>
+                    <button id="new-analysis" class="btn-secondary btn-new">
+                        <span class="btn-icon">🔄</span>
+                        Analyze Another Job
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Modal -->
+        <div id="error-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content error-modal-content">
+                <div class="modal-header">
+                    <h3 id="error-title">Error</h3>
+                    <button class="modal-close" id="close-error">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="error-message" class="error-message-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Preview Modal -->
+        <div id="preview-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="preview-title">File Preview</h3>
+                    <button class="modal-close" id="close-preview">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="preview-content" id="preview-content">
+                        <div class="preview-loading">
+                            <div class="spinner"></div>
+                            <p>Loading file contents...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Chatbot -->
+    <div id="chatbot-button" class="chatbot-button" title="Need Help?">
+        <span class="chatbot-icon">💬</span>
+    </div>
+
+    <div id="chatbot-modal" class="chatbot-modal hidden">
+        <div class="chatbot-overlay"></div>
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <h3>Help Assistant</h3>
+                <button id="chatbot-close" class="chatbot-close">&times;</button>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <div class="chatbot-message bot">
+                    <div class="message-content" id="chatbot-welcome">
+                        <strong>👋 Welcome to SkillGap AI!</strong><br>
+                        I'm your personal assistant for understanding how to get the most out of our skill analysis tool. Click any of the questions below or ask me anything about using the platform!
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer">
+                <div class="quick-questions" id="quick-questions">
+                    <!-- Default questions shown when no results -->
+                    <button class="quick-btn" data-question="upload">How to upload files?</button>
+                    <button class="quick-btn" data-question="analyze">How does analysis work?</button>
+                    <button class="quick-btn" data-question="results">Understanding results</button>
+                    <button class="quick-btn" data-question="export">How to export reports?</button>
+                </div>
+                <div class="chatbot-actions">
+                    <button id="clear-chat" class="clear-chat-btn">🗑️ Clear Chat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

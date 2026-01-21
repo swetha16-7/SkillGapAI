@@ -1,0 +1,39 @@
+Job Title: Web Developer
+Department: Engineering
+Location: Bengaluru / Remote
+Experience: 0 – 2 Years
+Employment Type: Full-time
+
+--------------------------------------------------
+JOB SUMMARY
+--------------------------------------------------
+We are looking for a Web Developer to support the development and maintenance of web applications. The ideal candidate should have a basic understanding of web technologies and good communication skills.
+
+--------------------------------------------------
+KEY RESPONSIBILITIES
+--------------------------------------------------
+- Develop and maintain web pages
+- Ensure responsive design across devices
+- Work closely with designers and developers
+- Fix bugs and improve existing features
+- Follow coding standards and best practices
+
+--------------------------------------------------
+REQUIRED SKILLS
+--------------------------------------------------
+Technical Skills:
+- HTML, CSS, JavaScript
+- Basic knowledge of React or similar framework
+- Version control using Git
+
+Soft Skills:
+- Good verbal and written communication
+- Ability to work in a team
+- Problem-solving mindset
+- Willingness to learn
+
+--------------------------------------------------
+QUALIFICATIONS
+--------------------------------------------------
+- Bachelor’s degree in Computer Science or related field
+- Freshers are welcome to apply
